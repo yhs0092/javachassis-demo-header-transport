@@ -1,0 +1,13 @@
+APPLICATION_ID: demo-transport-header
+service_description:
+  name: transport-header-server
+  version: 0.0.1
+cse:
+  service:
+    publishAddress: 127.0.0.1
+    registry:
+      address: http://127.0.0.1:30100
+  rest:
+    address: 0.0.0.0:18081
+  metrics:
+    enabled: false
