@@ -10,3 +10,6 @@ cse:
     address: 0.0.0.0:18080
   metrics:
     enabled: false
+  references:
+    transport-header-server:
+      version-rule: 0.0.1+
