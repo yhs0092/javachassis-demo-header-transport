@@ -1,7 +1,8 @@
 package com.github.yhs0092.hello.jaxrs;
 
-import javax.ws.rs.GET;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.HeaderParam;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -16,8 +17,8 @@ import com.github.yhs0092.hello.Hello;
 
 import io.servicecomb.provider.rest.common.RestSchema;
 
-@RestSchema(schemaId = "hello")
-@Path(value = "/hello")
+@RestSchema(schemaId = "paramTransportTest")
+@Path(value = "/params")
 @Produces(MediaType.APPLICATION_JSON)
 public class HelloImpl implements Hello {
   private static final Logger LOGGER = LoggerFactory.getLogger(HelloImpl.class);
@@ -25,14 +26,17 @@ public class HelloImpl implements Hello {
   @Value("${server.name}")
   private String serverName;
 
-  @Path("/sayHello")
-  @GET
+  @Path("/{pathParam}/test")
+  @PUT
   @Override
   public String sayHello(
-      @QueryParam(value = "name") String name,
-      @HeaderParam(value = "index") String index,
-      @HeaderParam("expectStatus") String expectStatus) {
-    LOGGER.info("sayHello called, name = {}, index = {}, expectStatus = {}", name, index, expectStatus);
-    return "from " + serverName + ": Hello, " + name;
+      @PathParam("pathParam") String pathParam,
+      @QueryParam(value = "queryParam") String queryParam,
+      @HeaderParam(value = "headerParam") String headerParam,
+      @BeanParam String bodyParam) {
+    LOGGER.info("pathParam = {}, queryParam = {}, headerParam = {}, bodyParam = {}",
+        pathParam, queryParam, headerParam, bodyParam);
+    return "pathParam = [" + pathParam + "], queryParam = [" + queryParam + "], headerParam = [" + headerParam
+        + "], bodyParam = [" + bodyParam + "]";
   }
 }

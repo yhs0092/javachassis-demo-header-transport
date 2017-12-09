@@ -1,45 +1,57 @@
 package com.github.yhs0092.client;
 
 public class HelloParam {
-  private Integer index;
+  private String pathParam;
 
-  private String expectStatus;
+  private String queryParam;
 
-  private String name;
+  private String headerParam;
 
-  public Integer getIndex() {
-    return index;
+  private String bodyParam;
+
+  public String getPathParam() {
+    return pathParam;
   }
 
-  public HelloParam setIndex(Integer index) {
-    this.index = index;
+  public HelloParam setPathParam(String pathParam) {
+    this.pathParam = pathParam;
     return this;
   }
 
-  public String getExpectStatus() {
-    return expectStatus;
+  public String getQueryParam() {
+    return queryParam;
   }
 
-  public HelloParam setExpectStatus(String expectStatus) {
-    this.expectStatus = expectStatus;
+  public HelloParam setQueryParam(String queryParam) {
+    this.queryParam = queryParam;
     return this;
   }
 
-  public String getName() {
-    return name;
+  public String getHeaderParam() {
+    return headerParam;
   }
 
-  public HelloParam setName(String name) {
-    this.name = name;
+  public HelloParam setHeaderParam(String headerParam) {
+    this.headerParam = headerParam;
+    return this;
+  }
+
+  public String getBodyParam() {
+    return bodyParam;
+  }
+
+  public HelloParam setBodyParam(String bodyParam) {
+    this.bodyParam = bodyParam;
     return this;
   }
 
   @Override
   public String toString() {
     final StringBuilder sb = new StringBuilder("HelloParam{");
-    sb.append("index=").append(index);
-    sb.append(", expectStatus='").append(expectStatus).append('\'');
-    sb.append(", name='").append(name).append('\'');
+    sb.append("pathParam='").append(pathParam).append('\'');
+    sb.append(", queryParam='").append(queryParam).append('\'');
+    sb.append(", headerParam='").append(headerParam).append('\'');
+    sb.append(", bodyParam='").append(bodyParam).append('\'');
     sb.append('}');
     return sb.toString();
   }

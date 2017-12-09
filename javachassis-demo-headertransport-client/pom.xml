@@ -19,12 +19,22 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.github.yhs0092</groupId>
+      <artifactId>javachassis-demo-headertransport-common</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
       <groupId>io.servicecomb</groupId>
       <artifactId>provider-springmvc</artifactId>
     </dependency>
     <dependency>
       <groupId>io.servicecomb</groupId>
       <artifactId>provider-jaxrs</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.servicecomb</groupId>
+      <artifactId>provider-pojo</artifactId>
     </dependency>
     <dependency>
       <groupId>io.servicecomb</groupId>

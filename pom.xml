@@ -11,6 +11,7 @@
   <modules>
     <module>javachassis-demo-headertransport-server</module>
     <module>javachassis-demo-headertransport-client</module>
+    <module>javachassis-demo-headertransport-common</module>
   </modules>
 
   <properties>
