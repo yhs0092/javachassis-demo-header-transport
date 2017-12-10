@@ -15,6 +15,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.github.yhs0092.client.HelloClient;
@@ -47,15 +48,24 @@ public class HelloClientImpl implements HelloClient {
     Map<String, String> uriParams = new HashMap<>(1);
     uriParams.put("queryParam", helloParam.getQueryParam());
     ResponseEntity<String> responseEntity = null;
-    responseEntity = restTemplate
-        .exchange("cse://transport-header-server/params/{pathParam}/test?queryParam={queryParam}",
-            HttpMethod.PUT, requestEntity, String.class, helloParam.getPathParam(), helloParam.getQueryParam());
-    LOGGER.info("sayHello invocation finished, result = [{}]", responseEntity.getBody());
+    try {
+      responseEntity = restTemplate
+          .exchange("cse://transport-header-server/params/{pathParam}/test?queryParam={queryParam}",
+              HttpMethod.PUT, requestEntity, String.class, helloParam.getPathParam(), helloParam.getQueryParam());
+      LOGGER.info("sayHello invocation finished, result = [{}]", responseEntity.getBody());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
 
-    String pojoResult = hello
-        .sayHello(helloParam.getPathParam(), helloParam.getQueryParam(), helloParam.getHeaderParam(),
-            helloParam.getBodyParam());
-    LOGGER.info("sayHello pojo invoc finished, result = [{}]", pojoResult);
-    return responseEntity.getBody() + "  " + pojoResult;
+    String pojoResult = null;
+    try {
+      pojoResult = hello
+          .sayHello(helloParam.getPathParam(), helloParam.getQueryParam(), helloParam.getHeaderParam(),
+              helloParam.getBodyParam());
+      LOGGER.info("sayHello pojo invoc finished, result = [{}]", pojoResult);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return (null == responseEntity ? "" : responseEntity.getBody()) + "  " + pojoResult;
   }
 }
