@@ -12,7 +12,7 @@ import io.servicecomb.foundation.common.utils.Log4jUtils;
 @ComponentScan(basePackages = "com.github.yhs0092")
 public class AppServer {
   public static void main(String[] args) throws Exception {
-    Log4jUtils.init();
+//    Log4jUtils.init();
     BeanUtils.init();
   }
 }

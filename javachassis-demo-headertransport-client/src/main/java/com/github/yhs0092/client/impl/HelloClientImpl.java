@@ -20,7 +20,9 @@ import org.springframework.web.client.RestTemplate;
 
 import com.github.yhs0092.client.HelloClient;
 import com.github.yhs0092.client.HelloParam;
+import com.github.yhs0092.hello.EmptyParam;
 import com.github.yhs0092.hello.Hello;
+import com.github.yhs0092.hello.Test;
 
 import io.servicecomb.provider.pojo.RpcReference;
 import io.servicecomb.provider.rest.common.RestSchema;
@@ -34,6 +36,9 @@ public class HelloClientImpl implements HelloClient {
 
   @RpcReference(microserviceName = "transport-header-server", schemaId = "paramTransportTest")
   private Hello hello;
+
+  @RpcReference(microserviceName = "transport-header-server", schemaId = "test")
+  private Test test;
 
   private RestTemplate restTemplate = RestTemplateBuilder.create();
 
@@ -66,6 +71,9 @@ public class HelloClientImpl implements HelloClient {
     } catch (Exception e) {
       e.printStackTrace();
     }
+
+//    LOGGER.info("empty param test: "+hello.test(new EmptyParam()));
+
     return (null == responseEntity ? "" : responseEntity.getBody()) + "  " + pojoResult;
   }
 }

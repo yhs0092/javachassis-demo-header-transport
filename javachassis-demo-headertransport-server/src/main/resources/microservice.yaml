@@ -11,3 +11,8 @@ cse:
     address: 0.0.0.0:18081
   metrics:
     enabled: false
+servicecomb:
+  accesslog:
+    enabled: true
+    pattern: "%h - - %{yyyy MM dd HH:mm:ss.SSS zzz}t %r !! %q cs-uri %% %s %B"
+    #pattern: "[cs-method] %m %s %T %D %h %v %p %B %b %r %U %q cs-uri-stem cs-uri-query cs-uri %H %t %{yyyy MM dd HH:mm:ss zzz}t %{yyyy MM dd HH:mm:ss|GMT+0|en-US}t %{headerParam}i %{Content-Type}o %{cookie}c"
