@@ -8,8 +8,8 @@ import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.yhs0092.hello.EmptyParam;
-import com.github.yhs0092.hello.Test;
+import com.github.yhs0092.EmptyParam;
+import com.github.yhs0092.Test;
 
 import io.servicecomb.provider.rest.common.RestSchema;
 
@@ -17,7 +17,7 @@ import io.servicecomb.provider.rest.common.RestSchema;
 @Path("/test")
 @Produces(MediaType.APPLICATION_JSON)
 public class TestImpl implements Test {
-  Logger LOGGER = LoggerFactory.getLogger(TestImpl.class);
+  private Logger LOGGER = LoggerFactory.getLogger(TestImpl.class);
 
   @Path("/emptyParam")
   @POST

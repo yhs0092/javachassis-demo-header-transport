@@ -1,4 +1,4 @@
-package com.github.yhs0092.hello;
+package com.github.yhs0092;
 
 public interface Test {
   String test(EmptyParam emptyParam);
