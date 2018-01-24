@@ -15,7 +15,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.github.yhs0092.client.HelloClient;
@@ -51,7 +50,16 @@ public class HelloClientImpl implements HelloClient {
     try {
       responseEntity = restTemplate
           .exchange("cse://transport-header-server/params/{pathParam}/test?queryParam={queryParam}",
-              HttpMethod.PUT, requestEntity, String.class, helloParam.getPathParam(), helloParam.getQueryParam());
+              HttpMethod.POST, requestEntity, String.class, helloParam.getPathParam(), helloParam.getQueryParam());
+      LOGGER.info("sayHello invocation finished, result = [{}]", responseEntity.getBody());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    try {
+      responseEntity = restTemplate
+          .postForEntity("cse://transport-header-server/params/{pathParam}/test?queryParam={queryParam}",
+              requestEntity, String.class, helloParam.getPathParam(), helloParam.getQueryParam());
       LOGGER.info("sayHello invocation finished, result = [{}]", responseEntity.getBody());
     } catch (Exception e) {
       e.printStackTrace();
