@@ -9,6 +9,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.servicecomb.provider.pojo.RpcReference;
+import org.apache.servicecomb.provider.rest.common.RestSchema;
+import org.apache.servicecomb.provider.springmvc.reference.RestTemplateBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -20,10 +23,6 @@ import org.springframework.web.client.RestTemplate;
 import com.github.yhs0092.client.HelloClient;
 import com.github.yhs0092.client.HelloParam;
 import com.github.yhs0092.hello.Hello;
-
-import io.servicecomb.provider.pojo.RpcReference;
-import io.servicecomb.provider.rest.common.RestSchema;
-import io.servicecomb.provider.springmvc.reference.RestTemplateBuilder;
 
 @RestSchema(schemaId = "helloClient")
 @Path(value = "/hello")
