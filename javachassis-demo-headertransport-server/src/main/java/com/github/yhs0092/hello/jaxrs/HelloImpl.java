@@ -7,6 +7,7 @@ import java.util.Scanner;
 import javax.servlet.http.Part;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
@@ -37,7 +38,7 @@ public class HelloImpl implements Hello {
   @Override
   public String sayHello(
       @PathParam("pathParam") String pathParam,
-      @QueryParam(value = "queryParam") String queryParam,
+      @DefaultValue("qp") @QueryParam(value = "queryParam") String queryParam,
       @HeaderParam(value = "headerParam") String headerParam,
       String bodyParam) {
     LOGGER.info("pathParam = {}, queryParam = {}, headerParam = {}, bodyParam = {}",
@@ -46,9 +47,9 @@ public class HelloImpl implements Hello {
         + "], bodyParam = [" + bodyParam + "]";
   }
 
-  @Path("/upload")
-  @Consumes(MediaType.MULTIPART_FORM_DATA)
-  @POST
+  //  @Path("/upload")
+//  @Consumes(MediaType.MULTIPART_FORM_DATA)
+//  @POST
   public String upload(@FormParam("up") Part uploadFile) {
     LOGGER.info("upload is called");
     StringBuilder sb = new StringBuilder();
@@ -67,10 +68,10 @@ public class HelloImpl implements Hello {
     return uploadContent;
   }
 
-  //
-//  @Path("/{pathParam}/aggregate")
-//  @POST
-  public String sayHelloAggregate(@BeanParam AggregatedParam aggregatedParam, String bodyParam) {
+  @Consumes(MediaType.MULTIPART_FORM_DATA)
+  @Path("/{pathParam}/aggregate")
+  @POST
+  public String sayHelloAggregate(@BeanParam AggregatedParam aggregatedParam, @QueryParam("qqq") String bodyParam) {
     LOGGER.info("sayHelloAggregate is called, aggregatedParam = [{}], bodyParam = [{}]", aggregatedParam, bodyParam);
     return aggregatedParam + bodyParam;
   }

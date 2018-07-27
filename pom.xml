@@ -15,7 +15,7 @@
   </modules>
 
   <properties>
-    <java-chassis.version>1.0.0</java-chassis.version>
+    <java-chassis.version>1.1.0-SNAPSHOT</java-chassis.version>
   </properties>
 
   <dependencyManagement>
